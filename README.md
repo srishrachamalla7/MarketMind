@@ -101,4 +101,3 @@ This project was developed by:
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 
-This version now includes the LinkedIn links for both *Srish Rachamalla* and *Sai Teja Pallerla* in a clickable format. Let me know if you need any more changes!
