@@ -12,7 +12,9 @@ import markdown
 import streamlit as st
 
 genai.configure(api_key='AIzaSyCootL_jwKI3YDb6cKRJV-Ad0N4oKlLXXE')
-client = Groq(api_key='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')
+client = Groq(api_key='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')
+
+# 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
 
 def jina(url):
     base_url= "https://r.jina.ai//"
