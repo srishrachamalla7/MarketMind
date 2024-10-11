@@ -88,7 +88,7 @@ The final analysis will be sent via email in an HTML format, converted from Mark
 
 ## ⚙️ **How It Works**
 
-1. **Data Gathering:** Uses APIs like OpenAI's GPT models, Jina AI, and Serper to extract information about the product and competitors.
+1. **Data Gathering:** Uses APIs like Groq models and Serper to extract information about the product and competitors.
    
 2. **Product and Competitor Analysis:** The tool uses AI models to summarize articles and provide insights into market performance and competitive positioning.
 
