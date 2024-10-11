@@ -112,7 +112,7 @@ This project was developed by:
 
 ## 📦 **Requirements**
 
-- Python 3.x
+- Python 3.11
 - External APIs for product and competitor information.
 - Gmail credentials with App Password enabled.
 
