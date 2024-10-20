@@ -116,12 +116,3 @@ This project was developed by:
 - External APIs for product and competitor information.
 - Gmail credentials with App Password enabled.
 
----
-
-## 📜 **License**
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-This version of your README adds some color and icons to make it more appealing and readable. Let me know if you'd like any additional changes!
