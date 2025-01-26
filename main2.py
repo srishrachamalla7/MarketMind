@@ -13,7 +13,7 @@ def groq_inference(query):
     try:
         client = OpenAI(
             base_url="https://openrouter.ai/api/v1",
-            api_key="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",  # Replace with your actual API key
+            api_key="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",  # Replace with your actual API key
             # default_headers={
             #     "HTTP-Referer": "http://localhost:3000",
             #     "X-Title": "MarketMind"
@@ -21,7 +21,7 @@ def groq_inference(query):
         )
         
         completion = client.chat.completions.create(
-            model="anthropic/claude-2",
+            model="openai/gpt-4o-mini",
             messages=[{
                 "role": "user", 
                 "content": query
@@ -216,17 +216,18 @@ def main(name):
   # print(summpop)
   print('*****************************************************************')
   analysis_total = analysis_prod(prod_info,summpop)
+  print(analysis_total)
   end_time = time.time()
   print(f"Analysis time taken: {end_time - end_time_summary} seconds")
   print('*****************************************************************')
   print(f"Total time taken: {end_time - start_time} seconds")
   print('*****************************************************************')
-  print(analysis(prod_info,summpop))
+  # print(analysis(prod_info,summpop))
 
   return start_time, end_prd_anal, end_compi, end_time_summary , end_time, analysis_total
 
 if __name__ == '__main__':
-    t1,t2,t3,t4,t5,analysis = main('Mahindra BE6E')
+    t1,t2,t3,t4,t5,analysis = main('Tata Punch')
     print("time taken to Know about the product: ", (t2-t1)/60)
     print("time taken to Know about the competitors: ", (t3-t2)/60)
     print("time taken to Know about the give analysis: ", (t4-t3)/60)
