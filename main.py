@@ -588,9 +588,9 @@ st.sidebar.markdown("- Real-Time Market Intelligence: Offers real-time data upda
 st.sidebar.markdown("- AI and Machine Learning: Helps analyze competitors and suggests improvement strategies based on data.")
 
     # Developer details with LinkedIn links
-st.sidebar.markdown("### 👨‍💻 Developers")
+st.sidebar.markdown("### 👨‍💻 Developer")
 st.sidebar.markdown("[Srish](https://www.linkedin.com/in/srishrachamalla/) - AI/ML Developer")
-st.sidebar.markdown("[Sai Teja](https://www.linkedin.com/in/saiteja-pallerla-668734225/) - Data Analyst")
+# st.sidebar.markdown("[Sai Teja](https://www.linkedin.com/in/saiteja-pallerla-668734225/) - Data Analyst")
 
     # Add expander sections for additional content
 with st.sidebar.expander("ℹ About MarketMind"):
