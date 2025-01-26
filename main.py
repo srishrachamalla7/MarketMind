@@ -11,10 +11,6 @@ from email.mime.multipart import MIMEMultipart
 import markdown
 import streamlit as st
 
-genai.configure(api_key='AIzaSyCootL_jwKI3YDb6cKRJV-Ad0N4oKlLXXE')
-client = Groq(api_key='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')
-
-# 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
 
 def jina(url):
     base_url= "https://r.jina.ai//"
@@ -608,9 +604,9 @@ st.sidebar.markdown("- Real-Time Market Intelligence: Offers real-time data upda
 st.sidebar.markdown("- AI and Machine Learning: Helps analyze competitors and suggests improvement strategies based on data.")
 
     # Developer details with LinkedIn links
-st.sidebar.markdown("### 👨‍💻 Developers")
+st.sidebar.markdown("### 👨‍💻 Developer")
 st.sidebar.markdown("[Srish](https://www.linkedin.com/in/srishrachamalla/) - AI/ML Developer")
-st.sidebar.markdown("[Sai Teja](https://www.linkedin.com/in/saiteja-pallerla-668734225/) - Data Analyst")
+# st.sidebar.markdown("[Sai Teja](https://www.linkedin.com/in/saiteja-pallerla-668734225/) - Data Analyst")
 
     # Add expander sections for additional content
 with st.sidebar.expander("ℹ About MarketMind"):
