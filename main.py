@@ -24,7 +24,6 @@ def jina(url):
 
 def groq_inference(query):
   
-
   # client = Groq()
   completion = client.chat.completions.create(
       model="llama3-groq-70b-8192-tool-use-preview",
@@ -116,6 +115,7 @@ def AI_Search_extract_cmpy(text):
 # Input Format:
 
 # The input will be a summary text containing product names, features, and key points."""
+#$#$#$#$#
   prompt = """You will be given a dynamic text that summarizes key products, applications, and comparisons from articles about VR headsets. Your task is to extract relevant product names from the text and generate a list of search queries suitable for a search API. Don't give more than five names in the list.
   Output Format:
 
@@ -123,7 +123,15 @@ Provide only the list in the following format, without any explanatory or introd
 ['company - product name', 'company - product name', 'product name', ...]
 and remember dont give like this ['McDonald's - Big Mac'] becauses this will be given to pyhton this return error.
 If the company name is unknown, only include the product name without the company name."""
+#   prompt = """You will be given a dynamic text that summarizes key products, applications, and comparisons from articles about VR headsets. Your task is to extract relevant product names from the text and generate a list of search queries suitable for a search API. Don't give more than five names in the list.Dont repeat the company names and please dont add single quotes or any other special characters that will be given error for pyhton to read.
+#   Output Format:
 
+# Provide only the list in the following format, without any explanatory or introductory text:
+# ['company - product name', 'company - product name', 'product name', ...]
+# and remember dont give like this ['McDonald's - Big Mac'] becauses this will be given to pyhton this return error.
+# If the company name is unknown, only include the product name without the company name."""
+
+#   ans = groq_inference(prompt + f"the text is: {text}")
   ans = DDGS().chat(prompt+"the text is \n" + text, model='claude-3-haiku')
   return ast.literal_eval(ans)
 
@@ -254,6 +262,12 @@ def analysis_prod(prod_summ,cmpy_summ):
 
 #   return start_time, end_prd_anal, end_compi, end_time_summary , end_time, analysis_total
 
+def time_calculator(start_time, end_time):
+    time_in_seconds = end_time - start_time
+    minutes = int(time_in_seconds // 60)  # Get minutes
+    seconds = int(time_in_seconds % 60) 
+    time_taken = f"{minutes} minutes and {seconds} seconds"
+    return time_taken
 
 def send_email_gmail(receiver_email,markdown_content):
     sender_email = "srishnotebooks@gmail.com"
@@ -284,8 +298,10 @@ def send_email_gmail(receiver_email,markdown_content):
         server.quit()
 
         print("Email sent successfully!")
+        # return True
     except Exception as e:
         print(f"Error sending email: {str(e)}")
+        # return False
 
 # def main(name, email_id):
 #     start_time = time.time()
@@ -495,7 +511,7 @@ def main(name, email_id):
         st.write("### Product Information:")
         st.write(prod_info)
         # st.write(f"Time taken to analyze the product: {end_prd_anal - start_time:.2f} seconds")
-        st.write(f"Number of websites analyzed: {len(prod_info)}")
+        st.write(f"Number of Articles analyzed: {len(prod_info)}")
         st.markdown('---')  # Horizontal line after the section
 
     # Competitor analysis section
@@ -514,7 +530,7 @@ def main(name, email_id):
         # """)
 
         st.write("### Competitor Analysis:")
-        st.write(f"Number of competitors found: {len(otp)}")
+        st.write(f"Number of potential competitors found: {len(otp)}")
         # st.write(f"The Competitors are: \n {otp}")
         # st.write(f"Time taken to analyze the competitors: {end_compi - end_prd_anal:.2f} seconds")
 
@@ -554,7 +570,7 @@ def main(name, email_id):
         # <p>Total time taken: {end_time - start_time:.2f} seconds</p>
         # """)
 
-        st.write("### Total Analysis:")
+        # st.write("### Total Analysis:")
         st.write(analysis_total)
 
         st.markdown('---')  # Horizontal line after the section
@@ -564,10 +580,10 @@ def main(name, email_id):
         st.error("Email is not sent because it was not provided.", icon="🚫")
     else:
         # Call send_email_gmail and check if email is sent
-        if send_email_gmail(email_id, analysis_total) == 'Email sent successfully!':
-            st.success("Email sent successfully!", icon="✅")
-        else:
-            st.error("Failed to send email.", icon="❌")
+        send_email_gmail(email_id, analysis_total)
+        st.success("Email sent successfully!", icon="✅")
+        # else:
+            # st.error("Failed to send email.", icon="❌")
 
     return start_time, end_prd_anal, end_compi, end_time_summary, end_time, analysis_total
 
@@ -641,10 +657,11 @@ if st.button("Start Analysis"):
     product_color = "#FF33B5"  # Pink
 
     # Display each time taken in different colors
-    st.markdown(f"<p style='color: {product_color};'>Time taken to analyze the product: {(t2 - t1) / 60:.2f} minutes</p>", unsafe_allow_html=True)
-    st.markdown(f"<p style='color: {competitors_color};'>Time taken to analyze competitors: {(t3 - t2) / 60:.2f} minutes</p>", unsafe_allow_html=True)
-    st.markdown(f"<p style='color: {summary_color};'>Time taken to generate summary: {(t4 - t3) / 60:.2f} minutes</p>", unsafe_allow_html=True)
-    st.markdown(f"<p style='color: {total_color};'>Time taken for total analysis: {(t5 - t1) / 60:.2f} minutes</p>", unsafe_allow_html=True)
+     # Get seconds
+    st.markdown(f"<p style='color: {product_color};'>Time taken to analyze the product: {time_calculator(t2 , t1)}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color: {competitors_color};'>Time taken to analyze competitors: {time_calculator(t3 , t2)} minutes</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color: {summary_color};'>Time taken to generate summary: {time_calculator(t4 , t3)} minutes</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color: {total_color};'>Time taken for total analysis: {time_calculator(t5 , t1)} minutes</p>", unsafe_allow_html=True)
     st.markdown("---")
 st.markdown("""
         <div style="text-align: center; font-size: 0.9em;">
